@@ -2,10 +2,10 @@ my name is lohith i am 18 years old a beginer python developer , beginer python 
 bussiness to automate their boring work with ai automation and save their time .
 i am not that much experienced in this field i am a newbie here with 8 to 12 months of learnig experience .
 but my skills are more than enough to solve your boring probelms 
-my skills area:
+my skills areS:
 python 
 web develpoment
-ai auutomation
+ai automation
 prompt enginnering
 quick problem solving 
 

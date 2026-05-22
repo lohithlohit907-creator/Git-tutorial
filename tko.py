@@ -61,10 +61,10 @@ button.pack(pady=5)
 label=Label(
     font="Airal 16 bold",
     bg="black",
-    fg="white"
+    fg="red"
 )
 
-label.pack(pady=5)    
+label.pack(pady=10)    
 
 
 
