@@ -1,9 +1,10 @@
 from tkinter import *
 from datetime import date
+import matplotlib.pyplot as plt
 
 root = Tk()
 
-root.geometry("500x600")
+root.geometry("550x650")
 
 root.title("Lohith's Productivity Tracker")
 
@@ -124,7 +125,7 @@ def update():
 # ----------SAVE DATE FUNCTION------------
 def save_data():
 
-    file = open("tracker2_history.txt","a")
+    file = open("trackme.txt","a")
 
     file.write(
         f"{today}|"
@@ -214,7 +215,7 @@ def load_data():
 
     try:
 
-        file = open("tracker2_history.txt","r")
+        file = open("trackme.txt","r")
 
         data = file.readlines()
 
@@ -250,7 +251,7 @@ def load_data():
 
     try:
 
-        file = open("tracker2_history.txt","r")
+        file = open("trackme.txt","r")
 
         data = file.readlines()
 
@@ -279,7 +280,7 @@ def calculate_streak():
 
     try:
 
-        file = open("tracker2_history.txt","r")
+        file = open("trackme.txt","r")
 
         lines = file.readlines()
 
@@ -316,7 +317,7 @@ def stats():
 
     try:
 
-        file=open("tracker2_history.txt","r")
+        file=open("trackme.txt","r")
         lines=file.readlines()
         file.close()
 
@@ -361,7 +362,47 @@ def stats():
         status_label.config(
             text="no statistics yet"
     )
+        
+# ---------------GRAPH FUNCTION-------------------
+def show_graph():
 
+    try:
+
+        file = open("trackme.txt","r")
+
+        lines = file.readlines()
+
+        file.close()
+
+        days = []
+        scores = []
+
+        for line in lines:
+
+            data = line.strip().split("|")
+
+            completed = data.count("True")
+
+            days.append(data[0])
+
+            scores.append(completed)
+
+        print(days)
+        print(scores)
+
+        plt.plot(days,scores)
+
+        plt.title("Consistency Graph")
+
+        plt.xlabel("Days")
+
+        plt.ylabel("Completed Goals")
+
+        plt.show()
+
+    except FileNotFoundError:
+
+        print("No history file found")
 # -----------------BUTTON-----------------
 Button(
     root,
@@ -371,9 +412,16 @@ Button(
     bg="cyan"
 ).pack(pady=20)
 
+# ----------------Graph button----------------
+Button(
+    root,
+    text="Show Graph 📈",
+    command=show_graph,
+    font=("Arial",14,"bold"),
+    bg="orange"
+).pack(pady=10)
 # -------------CALLING FUNCTION------------
 load_data()
 calculate_streak()
-# stats()
 
 root.mainloop()
